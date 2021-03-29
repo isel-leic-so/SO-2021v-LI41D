@@ -1,0 +1,2 @@
+#!/bin/bash
+inc $1 | inc | inc 
