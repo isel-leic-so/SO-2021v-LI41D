@@ -18,8 +18,8 @@
 #include "memutils.h"
 #include "meminfo.h"
 
-#define MB (1024*2014)
-#define SHMEM_SIZE (MB*sizeof(int))
+
+#define SHMEM_SIZE (1000*1000*sizeof(int))
 
 long sum_ints(int *ints, int len) {
 	long sum =0;
