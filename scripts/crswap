@@ -1,0 +1,16 @@
+#!/bin/bash
+if [ $# -ne 1 ] 
+then
+	echo "usage: crswap <num> (GBytes)"
+	exit 1
+fi
+
+c=`expr 1024 \* 1024 \* $1`
+echo $c
+
+sudo sudo sh -c \
+"dd if=/dev/zero of=/swapfile bs=1024 count=$c; \
+ mkswap /swapfile; \
+ sudo swapon /swapfile"
+
+

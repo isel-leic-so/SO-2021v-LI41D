@@ -1,0 +1,10 @@
+#!/bin/bash
+
+if [ $# != 1 ]
+then
+	echo "usage insight <execfile>"
+	exit 1
+fi
+
+echo `pwd`/$1	
+Insight-90f2e23-x86_64.AppImage `pwd`/$1
