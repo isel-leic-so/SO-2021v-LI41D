@@ -4,11 +4,13 @@ CC = gcc
 
 CFLAGS = -g -Wall -I$(INCLUDE)
 OBJS = $(SRCS:.c=.o)
-all:	mem2 showmem usemem
+all:	mem2 showmem usemem 
 
 mem2: mem2.o
 	gcc -o mem2  mem2.o $(SOLIB) -lrt
 
+
+	
 showmem: showmem.o
 	gcc -o showmem showmem.o $(SOLIB) -lrt
 	
