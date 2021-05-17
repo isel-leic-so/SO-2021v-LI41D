@@ -14,8 +14,8 @@ math.o: math.c
 	gcc  -c $(CFLAGS) -fpic -Wall math.c
 	
 
-client:	client.o  libmath.so
-	gcc -o client client.o ./libmath.so 
+client:	client.o  ./libmath.so
+	gcc -o client client.o libmath.so 
 	
 client.o: client.c
 	gcc  -c $(CFLAGS) -Wall -g client.c 

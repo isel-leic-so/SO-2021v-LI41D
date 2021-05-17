@@ -83,7 +83,7 @@ void *shmem_open(const char *path) {
 
 void shmem_destroy(const char *name, void *base, size_t size) {
 	munmap(base, size);
-	unlink(name);
+	shm_unlink(name);
 }
 
 

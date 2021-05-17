@@ -2,7 +2,7 @@
 #ifndef _MEM_UTILS_H
 #define _MEM_UTILS_H
 
-
+#include <stddef.h>
 
 /*
  * Create a shared memory region of a specific size
