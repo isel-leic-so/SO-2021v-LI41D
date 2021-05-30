@@ -15,6 +15,9 @@
 #include <assert.h>
 #include "../include/uthread.h"
 #include "../include/list.h"
+#include "../include/usynch.h"
+
+#define JOIN_WITH_EVENT
 
 //
 // The data structure representing the layout of a thread's execution context
@@ -40,7 +43,12 @@ typedef struct _UTHREAD {
 	PUTHREAD_CONTEXT context;
 	LIST_ENTRY       link;
 	LIST_ENTRY       alive_link;
+#ifdef JOIN_WITH_EVENT	
+	EVENT terminated;
+#else
 	LIST_ENTRY		 join_waiters;
+#endif
+
 	UT_FUNCTION      function;   
 	UT_ARGUMENT      argument; 
 	PUCHAR           stack;

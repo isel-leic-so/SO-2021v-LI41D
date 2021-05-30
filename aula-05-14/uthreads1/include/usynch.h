@@ -7,7 +7,6 @@
 typedef struct {
 	LIST_ENTRY waiters;
 	BOOL signaled;
-	
 } EVENT;
 
 

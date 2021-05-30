@@ -195,14 +195,17 @@ void ut_exit () {
 	//
 	remove_entry_list(&running_thread->alive_link);
 	
-	
+#ifdef JOIN_WITH_EVENT
+	event_set(&running_thread->terminated);
+#else
 	//
 	// awake joiner threads
 	
 	while(!is_list_empty(&running_thread->join_waiters)) {
 		insert_tail_list(&ready_queue, remove_head_list(&running_thread->join_waiters));
 	}
-	
+#endif	
+ 
 	internal_exit(running_thread, extract_next_thread());
 	_ASSERTE(!"Supposed to be here!");
 }
@@ -336,11 +339,15 @@ HANDLE ut_create (UT_FUNCTION function, UT_ARGUMENT argument) {
 	
 	insert_tail_list(&alive_queue, &thread->alive_link);
 	
+#ifdef JOIN_WITH_EVENT
+	event_init(&thread->terminated, FALSE);
+#else
 	//
 	// initialize joiners list
 	//
 	init_list_head(&thread->join_waiters);
 	
+#endif
 	
 	//
 	// Set the thread's initial context by initializing the values of 
@@ -381,12 +388,14 @@ void ut_join(HANDLE _thread) {
 	
 	if (!ut_alive(thread)) return;
 	
-	
+#ifdef JOIN_WITH_EVENT
+	event_wait(&thread->terminated);
+#else	
 	insert_tail_list(&thread->join_waiters, &running_thread->link);
-	
-	
 	schedule();
+#endif
 	
+ 
 }
 
 

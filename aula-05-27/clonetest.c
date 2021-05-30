@@ -11,10 +11,14 @@
  
  #define STACK_SIZE (1024*32)
  
- int num=0;
+ int num=0; // global
  
- int clone(int (*fn)(void *), void *child_stack,
+ 
+ 
+int clone(int (*fn)(void *), void *child_stack,
                  int flags, void *arg, ... /* pid_t *ptid, void *newtls, pid_t *ctid */ );
+
+
 
 
 int child_func(void *arg) {
@@ -26,12 +30,13 @@ int child_func(void *arg) {
 }
 
 
+
 int main() {
 	int child_id;
 	
 	child_id = clone(child_func, 					  // code to execute on child 
 					 malloc(STACK_SIZE) + STACK_SIZE, // stack grows downward
-					 0, 							  // no flags
+					 CLONE_VM, 							  // no flags
 					 NULL							  // no argument
 			 );
 	
@@ -39,7 +44,6 @@ int main() {
 		perror("error creating child");
 	}
 	else {
-		 
 		
 		printf("parent: child created with id %d\n", child_id);	
 		//sleep(10);

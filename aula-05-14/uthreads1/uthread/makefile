@@ -1,7 +1,7 @@
 all: libuthread.so 
 
-libuthread.so: uthread.o  ctxswitch.o
-	gcc -o libuthread.so -shared uthread.o  ctxswitch.o
+libuthread.so: uthread.o  ctxswitch.o event.o 
+	gcc -o libuthread.so -shared uthread.o  event.o ctxswitch.o
 
  
 	
@@ -24,5 +24,5 @@ clean:
 	rm -rf *.o *.so *.a ctxswitch_test a.out
 
 install:
-	cp libuthread.so /usr/local/lib
+	sudo cp libuthread.so /usr/local/lib
 

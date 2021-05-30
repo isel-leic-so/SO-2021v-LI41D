@@ -15,6 +15,6 @@ join_test : join_test.c
 	
 	
 clean:
-	rm -rf simpletest singlestep
+	rm -rf simpletest singlestep join_test
 
 	
