@@ -16,6 +16,8 @@ $(BIN)/solib.so:	$(OBJS)
 	$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
 	
 
+install:
+	sudo cp bin/solib.so /usr/local/lib
 clean:
 	rm -rf *.o $(BIN)/*
 	
