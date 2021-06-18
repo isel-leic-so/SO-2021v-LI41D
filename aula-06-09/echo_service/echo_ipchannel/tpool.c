@@ -43,7 +43,9 @@ static void * worker_func(void *arg) {
 }
 
 
-void tp_init(tpool_t *pool, int pool_size) {
+ 
+
+void tp_init1(tpool_t *pool, int pool_size) {
 	
 	pthread_attr_t attr;
 	
@@ -70,6 +72,9 @@ void tp_init(tpool_t *pool, int pool_size) {
 	}
 }
 
+void tp_init(tpool_t *pool) {
+	tp_init1(pool, 4);
+}
 
 void tp_submit(tpool_t *pool, func_address func,  void *arg) {
 	pthread_mutex_lock(&pool->mutex);

@@ -26,7 +26,9 @@ typedef struct tpool {
 } tpool_t;
 
 
-void tp_init(tpool_t *pool, int pool_size);
+void tp_init1(tpool_t *pool, int pool_size);
+
+void tp_init(tpool_t *pool);
 
 
 void tp_submit(tpool_t *pool, func_address func,  void *arg);
