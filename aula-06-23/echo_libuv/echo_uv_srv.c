@@ -4,6 +4,8 @@
  * to maximize the I/O processing
  * where the request processing consumes CPU time (wich is really not the case
  * of the echo server, of course :) )
+ * 
+ * Note that the monothraeded version is published in the june 18 lecture.
  */
 
 #include <stdio.h>
@@ -150,7 +152,7 @@ void echo_read(uv_stream_t *client, ssize_t nread, const uv_buf_t *buf) {
 
 
 /**
- * The caclback for resolve a new client connection
+ * The callback for resolve a new client connection
  */
 void on_new_connection(uv_stream_t *server, int status) {
     if (status < 0) {
